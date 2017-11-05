@@ -1,5 +1,21 @@
 {% extends "base.html"%}
 {% block content%}
-<h1> This is the main page </h1>
-  <a href="{% url 'restorecommand:resto_index' %}">Restaurant recommendation</a>
+
+  <div class="container">
+
+      <div class="col-lg-8 col-lg-offset-2">
+        <h1> Personal Projects </h1>
+          <h3><a href="https://projet-virtualis.com/">VIRTUALIS</a></h3>
+          <p>
+            This project is a colaboration between UTT, Thales and other companies in France.
+            The aim of the project is creating a security system to improve the efficacity of
+            current security system.
+          </p>
+          <br>
+          <h3><a href="{% url 'restorecommand:resto_index' %}">Restaurant Recommandation</a></h3>
+          <p>
+            An implementation of Foursquare and GoogleMap API in django framwork.
+          </p>
+  </div>
+</div>
 {% endblock %}

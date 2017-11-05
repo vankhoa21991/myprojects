@@ -1,4 +1,83 @@
-{% extends "restorecommand/restorecommand_base.html"%}
-{% block content%}
-    <h1>Welcome to Restaurant recommend application</h1>
+{% extends "restorecommand/restorecommand_base.html" %}
+{% block content %}
+
+
+    <div class="row top-menu">
+		<div class="col-md-10"></div>
+		<div class="col-md-2 text-right"></div>
+	</div>
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Restaurants</h1>
+		</div>
+	</div>
+
+	<div class="row padding-top padding-bottom">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 padding-none">
+			<a href="{% url 'restorecommand:search_res'%}">
+				<button class="btn btn-default" id="new-restaurant">
+					<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Search Restaurants
+				</button>
+			</a>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+  In this example, I used the RestAPI of Foursquare to create a restaurant recommendation application.
+  You can push the Search Restaurants button and type in your favorite food and your place, it will return
+  the restaurants near your place. Have fun!! 
+<!--
+	{% for restaurant in restaurants %}
+		<a href="#">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10 restaurant_list" id="restaurant_list">
+						<h3>{{restaurant.name}}</h3>
+						<h4>{{restaurant.address}}<h4>
+
+						<a href="#">
+			<button class="btn btn-default" id="add-restaurant_{{restaurant.id}}">
+			<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add
+			</button>
+		</a>
+						<a href="#">
+			<button class="btn btn-default" id="delete-restaurant_{{restaurant.id}}">
+			<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Delete
+			</button>
+		</a>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+		</a>
+
+		{% endfor %} -->
+    <!-- <script type="text/javascript">
+
+    $(document).ready(function() {
+      $('.btn').each(function(){
+          var toggle_div_id = $(this).attr('id');
+          $(this).click(function(){
+
+              var datax = JSON.stringify({'dataabc': toggle_div_id});
+              console.log(datax)
+              $.ajax({
+                  url: "{% url 'restorecommand:add_res' %}",
+                  method: "POST",
+                  headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                  data: datax,
+                  dataType: "json"
+                }).done(function(response) {
+                  console.log(response.id + " " + response.name);
+                }).fail(function (error) {
+                  console.log(error);
+                });
+          });
+      });
+    });
+    </script> -->
 {% endblock %}

@@ -10,5 +10,5 @@ class SignUp(CreateView):
     success_url = reverse_lazy('login') # has to click on sign up
     template_name = 'accounts/signup.html'
 
-# def Mainpage(request):
-#     return render(request,'accounts/accounts_index.html')
+def Mainpage(request):
+    return render(request,'accounts/accounts_index.html')

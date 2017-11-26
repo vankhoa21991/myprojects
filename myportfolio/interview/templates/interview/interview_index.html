@@ -1,0 +1,30 @@
+{% extends "interview/interview_base.html" %}
+{% block content %}
+
+<h1> This is the index page of interview application</h1>
+
+<div class="row divider green">
+	<div class="col-md-12">
+	</div>
+</div>
+<br>
+<br>
+
+<a href="{% url 'interview:interview_all'%}">
+  <button class="btn btn-default" id="next-question">All Question
+  </button>
+</a>
+<br>
+<br>
+
+<form action= "{% url 'interview:interview_test'%}" method="POST" >
+{% csrf_token %}
+<input class="btn btn-default" type="submit" value="Take the test" />
+<br>
+<br>
+<input type="checkbox" name="job">Job<br>
+<input type="checkbox" name="nationality">Nationality<br>
+
+</form>
+
+{% endblock%}

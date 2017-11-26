@@ -43,7 +43,7 @@
 		</a>
 
 		<a href="#">
-			<button class="btn btn-default" id="edit-restaurant_{{restaurant.id}}">
+			<button class="btn btn-default" id="edit-restaurant_{{restaurant.id}}" name="{{restaurant.id}}_{{restaurant.name}}">
 			<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Edit
 			</button>
 		</a>
@@ -65,7 +65,7 @@
 
 	$(document).ready(function() {
 		$('.btn').each(function(){
-				var toggle_div_id = $(this).attr('id');
+				var toggle_div_id = $(this).attr('name');
 				$(this).click(function(){
 
 						var datax = {'dataabc': toggle_div_id};

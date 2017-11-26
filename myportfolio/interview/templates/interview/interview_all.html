@@ -1,0 +1,48 @@
+{% extends "interview/interview_base.html" %}
+{% block content %}
+
+<h1> This is the index page of interview application</h1>
+
+<div class="row divider green">
+	<div class="col-md-12">
+	</div>
+</div>
+<br>
+<br>
+<a href="{% url 'interview:interview_add'%}">
+  <button class="btn btn-default" id="next-question">Add Question
+  </button>
+</a>
+
+<a href="{% url 'interview:interview_all'%}">
+  <button class="btn btn-default" id="next-question">All Question
+  </button>
+</a>
+<br>
+<br>
+{% for question in questions %}
+  <a href="#">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10 restaurant-list">
+          <h3>{{question.question}}</h3>
+
+          <h5>{{question.answer}}</h5>
+  <a href="{% url 'interview:interview_delete' question_id=question.id %}">
+    <button class="btn btn-default" id="next-question">Delete</button>
+  </a>
+
+  <a href="{% url 'interview:interview_edit' question_id=question.id %}">
+    <button class="btn btn-default" id="next-question">Edit</button>
+  </a>
+
+
+
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </a>
+
+
+{% endfor %}
+{% endblock%}

@@ -119,6 +119,8 @@ def findARestaurant(mealType, location):
         #print "No Restaurants Found for %s" % location
         return "No Restaurants Found"
 
+def findRestaurantByName(name):
+    return "No Restaurants Found"
 # if __name__ == '__main__':
 #     findARestaurant("Pizza", "Tokyo, Japan")
 #     findARestaurant("Tacos", "Jakarta, Indonesia")

@@ -1,0 +1,60 @@
+{% extends "interview/interview_base.html" %}
+{% block content %}
+
+<h1> This is the index page of interview application</h1>
+
+<div class="row divider green">
+	<div class="col-md-12">
+	</div>
+</div>
+<br>
+<br>
+<a href="{% url 'interview:interview_add'%}">
+  <button class="btn btn-default" id="next-question">Add Question
+  </button>
+</a>
+
+<a href="{% url 'interview:interview_all'%}">
+  <button class="btn btn-default" id="next-question">All Question
+  </button>
+</a>
+<br>
+<br>
+{% for question in questions %}
+  <a href="#">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10 restaurant-list">
+
+          <h3>{{question.id}}. {{question.question}}</h3>
+
+  <a href="{% url 'interview:interview_next' question_id=question.id %}">
+    <button class="btn btn-default" id="next-question">Next Question</button>
+  </a>
+  <button class="btn btn-default toggle" id="toggle-answer">Show/Hide Answer</button>
+	<a href="{% url 'interview:interview_edit' question_id=question.id %}">
+    <button class="btn btn-default" id="next-question">Edit</button>
+  </a>
+
+	<br>
+	<br>
+	<div class="answer">
+		<h3>{{question.answer}}</h3>
+	</div>
+
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </a>
+
+
+{% endfor %}
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.answer').hide();
+	$('.toggle').click(function(){
+		$('.answer').toggle();
+	});
+});
+</script>
+{% endblock%}

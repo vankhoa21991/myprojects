@@ -43,8 +43,8 @@ def newRestaurants(request):
 @login_required
 def addRestaurants(request):
     if request.method == "POST":
-        # data = request.POST['dataabc']
-        data = request.GET.get('dataabc',None)
+        data = request.POST.get('dataabc')
+        # data = request.GET.get('dataabc',None)
         print(data)
         # restaurant_info = findARestaurant(restaurant_name, restaurant_address)
         # print(restaurant_info)

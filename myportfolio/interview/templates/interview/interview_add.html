@@ -14,21 +14,18 @@
 
 <br>
 
-	<div class="row">
-		<div class="col-md-6 col-md-offset-1 padding-top">
-			<form action="#" method = "post">
 
-				<div class="form-group">
-          {%csrf_token%}
-          {{ form.as_p }}
-
-				<div class="padding-bottom"></div>
-				<button type="submit" class="btn btn-default" id="submit" type="submit">Add</button>
-				</div>
-			</form>
-		</div>
-	</div>
-
+	<form action= "{% url 'interview:interview_add'%}" method="POST" >
+	{% csrf_token %}
+	<label for="question">Question:</label><input type="text" name="question" value="" style="font-size:12pt;height:80px;width:1000px;">
+	<br>
+	<label for="answer">Answer:</label><input type="text" name="answer" value="" style="font-size:12pt;height:80px;width:1000px;">
+	<br>
+	<br>
+	<input type="checkbox" name="job">Job<br>
+	<input type="checkbox" name="nationality">Nationality<br>
+	<input class="btn btn-default" type="submit" value="Take the test" />
+	</form>
 
   <br>
 

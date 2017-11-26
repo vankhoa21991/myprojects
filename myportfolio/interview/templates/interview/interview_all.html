@@ -21,13 +21,12 @@
 <br>
 <br>
 {% for question in questions %}
-  <a href="#">
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10 restaurant-list">
           <h3>{{question.question}}</h3>
 
-          <h5>{{question.answer}}</h5>
+
   <a href="{% url 'interview:interview_delete' question_id=question.id %}">
     <button class="btn btn-default" id="next-question">Delete</button>
   </a>
@@ -35,14 +34,36 @@
   <a href="{% url 'interview:interview_edit' question_id=question.id %}">
     <button class="btn btn-default" id="next-question">Edit</button>
   </a>
-
+	  <button class="btn btn-default toggle button" id="button_{{question.id}}">Show/Hide Answer</button>
+		<br>
+		<div class="answer" id="answer_button_{{question.id}}">
+			<h5>{{question.answer}}</h5>
+		</div>
 
 
       </div>
       <div class="col-md-1"></div>
     </div>
-  </a>
+
 
 
 {% endfor %}
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.answer').hide();
+
+	$('.button').each(function(){
+			var toggle_div_id = "answer_" + $(this).attr('id');
+			$(this).click(function(){
+				console.log(toggle_div_id)
+					$('#'+toggle_div_id).toggle();
+			});
+	});
+
+	$('.toggle_{{question.id}}').click(function(){
+		$('.answer_{{question.id}}').toggle();
+	});
+});
+</script>
 {% endblock%}

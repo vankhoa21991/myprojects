@@ -61,22 +61,25 @@ def nextQuestion(request,question_id):
 @login_required
 def addQuestion(request):
     if request.method == "POST":
-        form = QuestionForm(request.POST)
-        if form.is_valid():
+        job = request.POST.get('job')
+        na = request.POST.get('nationality')
 
-            question = form.cleaned_data['question']
-            answer = form.cleaned_data['answer']
-            option= form.cleaned_data['option']
+        question = request.POST.get('question')
+        answer = request.POST.get('answer')
+
+        if job is True:
+            option = True
+        elif na is True:
+            option = False
 
 
-            newquestion = Question(question = str(question),answer = str(answer),option = option)
+        newquestion = Question(question = str(question),answer = str(answer),option = option)
 
-            newquestion.save()
-            questions = Question.objects.all()
-            return render(request,'interview/interview_all.html', {'questions': questions})
+        newquestion.save()
+        questions = Question.objects.all()
+        return render(request,'interview/interview_all.html', {'questions': questions})
     else:
-        form = QuestionForm()
-    return render(request,'interview/interview_add.html', {'form': form})
+        return render(request,'interview/interview_add.html')
 
 @login_required
 def allQuestion(request):
@@ -101,20 +104,23 @@ def deleteQuestion(request,question_id):
 def editQuestion(request,question_id):
     questionToEdit = Question.objects.filter(id=question_id)
     if request.method == "POST":
-        form = QuestionForm(request.POST)
-        if form.is_valid():
 
+        job = request.POST.get('job')
+        na = request.POST.get('nationality')
 
-            newquestion = form.cleaned_data['question']
-            newanswer = form.cleaned_data['answer']
-            newoption= form.cleaned_data['option']
+        newquestion = request.POST.get('question')
+        newanswer = request.POST.get('answer')
 
-            Question.objects.filter(id=question_id).update(question = str(newquestion))
-            Question.objects.filter(id=question_id).update(answer = str(newanswer))
-            Question.objects.filter(id=question_id).update(option = str(newoption))
+        if job is True:
+            newoption = True
+        else:
+            newoption = False
 
-            questions = Question.objects.all()
-            return render(request,'interview/interview_all.html', {'questions': questions})
+        Question.objects.filter(id=question_id).update(question = str(newquestion))
+        Question.objects.filter(id=question_id).update(answer = str(newanswer))
+        Question.objects.filter(id=question_id).update(option = newoption)
+
+        questions = Question.objects.all()
+        return render(request,'interview/interview_all.html', {'questions': questions})
     else:
-        form = QuestionForm()
-    return render(request,'interview/interview_edit.html', {'form': form, 'questions': questionToEdit})
+        return render(request,'interview/interview_edit.html', {'questions': questionToEdit})
